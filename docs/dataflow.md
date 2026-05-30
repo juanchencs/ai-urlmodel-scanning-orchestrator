@@ -9,6 +9,7 @@
 5. Worker writes CSV output and uploads to S3.
 6. Orchestrator returns job metadata and artifact link.
 7. Analysis/report process reads CSV, computes metrics, builds charts, and generates summary.
+8. Final step: charts are uploaded to S3 and the AI-supported report (summary + charts) is posted to a Microsoft Teams channel via an Incoming Webhook.
 
 ## Sequence (Text)
 
@@ -18,6 +19,7 @@ Lambda Orchestrator -> Worker Runtime (SSM/ECS)
 Worker Runtime -> Scanner Container
 Scanner Container -> S3 (CSV output)
 Client/Reporter -> S3 (read output) -> Charts + Summary
+Reporter -> S3 (upload charts) -> Microsoft Teams (Adaptive Card)
 ```
 
 ## Failure Paths
@@ -26,4 +28,5 @@ Client/Reporter -> S3 (read output) -> Charts + Summary
 - Worker start failure: return `500` with reason.
 - Artifact upload failure: mark job failed and alert.
 - Analysis failure: keep raw CSV as source-of-truth artifact.
+- Teams delivery failure: report is still available in S3; retry the webhook post.
 

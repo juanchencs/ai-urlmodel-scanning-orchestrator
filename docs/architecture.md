@@ -1,5 +1,7 @@
 # Architecture
 
+> For a colored, end-to-end visual, see `architecture-diagram.md`.
+
 ## Overview
 
 This project is designed as an API-driven orchestration layer for URL model scanning.
