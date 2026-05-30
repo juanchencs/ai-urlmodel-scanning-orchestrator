@@ -1,4 +1,4 @@
-# API Contract
+# AWS RestAPI GateWay Contract
 
 ## Endpoint
 
