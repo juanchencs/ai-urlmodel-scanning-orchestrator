@@ -1,6 +1,6 @@
 # ai-urlmodel-secure-orchestrator
 
-`ai-urlmodel-secure-orchestrator` is a secure AI-supported API orchestration project for URL model scanning workflows on AWS.
+`ai-urlmodel-secure-orchestrator` is a secure *AI-supported* API orchestration project for URL model scanning workflows on AWS.
 
 It provides a reference structure for:
 - receiving scan requests through API Gateway
