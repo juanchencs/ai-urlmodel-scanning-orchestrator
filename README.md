@@ -162,7 +162,8 @@ ai-urlmodel-secure-orchestrator/
     ├── dataflow.md
     ├── data-workflow.md
     ├── webconsole-deployment.md
-    └── teams-reporting.md
+    ├── teams-reporting.md
+    └── llm-comparison.md
 ```
 
 ## How to Use
@@ -238,6 +239,33 @@ python src/send_teams_report.py \
   --prefix "mlmodels/urlmodel/reports"
 ```
 
+## LLM Comparison (Nova Lite vs Claude Opus)
+
+The reporting step can use different Bedrock models. Below are two summaries
+generated from the **same input** (7 URLs, 3 flagged, mean score ~38.3, no
+phishing keywords). Full analysis is in `docs/llm-comparison.md`.
+
+**`amazon.nova-lite-v1:0`**
+
+- Total URLs Monitored: 7
+- Flagged URLs: 3 (42.86%)
+- Average Risk Score: 38.29
+- Keyword Frequency: No high-risk keywords detected (e.g., "login", "password", "payment")
+
+**`anthropic.claude-opus-4-6-v1`**
+
+- Flagged URL Rate: 3 of 7 monitored URLs (43%) were flagged as potentially suspicious, indicating a notable proportion warranting further review.
+- Average Risk Score: The mean risk score across all URLs is 38.3 out of 100, suggesting a moderate overall threat level in the current batch.
+- Keyword Indicators: No common phishing/social-engineering keywords (e.g., "login," "password," "payment," "bank") were detected, suggesting flagged URLs may rely on other deceptive techniques.
+- Recommendation: Investigate the 3 flagged URLs manually to determine root cause of elevated scores despite absence of typical phishing keywords; consider updating detection heuristics accordingly.
+
+| Dimension | Nova Lite | Claude Opus |
+|---|---|---|
+| Style | Concise, metric-first | Narrative, analytical |
+| Numeric fidelity | Exact (42.86%, 38.29) | Rounded (43%, 38.3) |
+| Actionability | Facts only | Adds recommendation |
+| Best for | At-a-glance dashboards | Analyst triage / decision support |
+
 ## Examples
 
 ### Example request payload
@@ -269,3 +297,4 @@ URL count: 2
 - Data workflow diagram (colored): `docs/data-workflow.md`
 - Web Console deployment (IAM role, Lambda, API Gateway, policies): `docs/webconsole-deployment.md`
 - Microsoft Teams reporting (final step): `docs/teams-reporting.md`
+- LLM comparison (Nova Lite vs Claude Opus): `docs/llm-comparison.md`
