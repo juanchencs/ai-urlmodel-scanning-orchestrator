@@ -1,13 +1,13 @@
 # ai-urlmodel-secure-orchestrator
 
-`ai-urlmodel-secure-orchestrator` is a secure *AI-supported* API orchestration project for URL model scanning workflows on AWS.
+`ai-urlmodel-secure-orchestrator` is a secure **AI-supported** API orchestration project for URL model scanning workflows on AWS.
 
 It provides a reference structure for:
 - receiving scan requests through API Gateway
 - orchestrating scanning with a trained Machine Learning model on a worker (for example EC2 via SSM)
 - storing results in S3
-- analyzing results and generating summaries/charts with AI Model(supported by AWS Bedrock): claude / Nova
-- preparing outputs for dashboard/reporting use supported by AI Model (supported by AWS Bedrock): claude / Nova
+- analyzing results and generating summaries/charts with **AI Model(supported by AWS Bedrock)**: claude / Nova
+- preparing outputs for dashboard/reporting use supported by **AI Model (supported by AWS Bedrock)**: claude / Nova
 
 ## What This Project Does
 
