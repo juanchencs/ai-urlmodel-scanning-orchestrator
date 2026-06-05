@@ -1,2 +1,2 @@
-"""Core package for ai-urlmodel-secure-orchestrator."""
+"""Core package for ai-urlmodel-scanning-orchestrator."""
 

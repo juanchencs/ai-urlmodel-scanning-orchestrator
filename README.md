@@ -1,6 +1,6 @@
-# ai-urlmodel-secure-orchestrator
+# ai-urlmodel-scanning-orchestrator
 
-`ai-urlmodel-secure-orchestrator` is a secure **AI-supported** API orchestration project for URL model scanning workflows on AWS.
+`ai-urlmodel-scanning-orchestrator` is a secure **AI-supported** API orchestration project for URL model scanning workflows on AWS.
 
 It provides a reference structure for:
 - receiving scan requests through API Gateway
@@ -137,7 +137,7 @@ A stage-by-stage explanation with a color legend is in `docs/data-workflow.md`.
 ## Project Structure
 
 ```text
-ai-urlmodel-secure-orchestrator/
+ai-urlmodel-scanning-orchestrator/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
@@ -171,8 +171,8 @@ ai-urlmodel-secure-orchestrator/
 ### 1) Clone and enter project
 
 ```bash
-git clone https://github.com/juanchencs/ai-urlmodel-secure-orchestrator.git
-cd ai-urlmodel-secure-orchestrator
+git clone https://github.com/juanchencs/ai-urlmodel-scanning-orchestrator.git
+cd ai-urlmodel-scanning-orchestrator
 ```
 
 ### 2) Create Python environment

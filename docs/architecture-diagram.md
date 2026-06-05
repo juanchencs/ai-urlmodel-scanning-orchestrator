@@ -1,6 +1,6 @@
 # System Architecture Diagram
 
-The diagram below shows the end-to-end flow of `ai-urlmodel-secure-orchestrator`,
+The diagram below shows the end-to-end flow of `ai-urlmodel-scanning-orchestrator`,
 from the API request through scanning, AI analysis, and Microsoft Teams delivery.
 
 It is written in Mermaid, which renders as a colored diagram directly on GitHub.
