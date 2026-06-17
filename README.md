@@ -49,13 +49,13 @@ flowchart TB
     end
 
     subgraph WORK["Scan worker (Account BB)"]
-        W1["EC2 worker (jane-ec2)"]:::worker
+        W1["EC2 worker (juan-ec2)"]:::worker
         W2["Docker container<br/>sai-url:model-version-NNN<br/>port 8700+"]:::worker
         W3["scan_urls.py<br/>scan_single_urls_list()"]:::worker
     end
 
     subgraph DATA["Storage & AI (Account BB)"]
-        S3["S3 bucket<br/>lrs-jane-s3/mlmodels/urlmodel"]:::storage
+        S3["S3 bucket<br/>juan-s3/mlmodels/urlmodel"]:::storage
         BR["Amazon Bedrock<br/>Nova / Claude (Converse)"]:::ai
     end
 
@@ -105,7 +105,7 @@ flowchart TB
     P3["Worker writes urltest.txt<br/>then runs model scan"]:::process
     D4(["scan output CSV<br/>url, sha256, scoreNNN"]):::data
 
-    S1[("S3<br/>lrs-jane-s3/mlmodels/urlmodel")]:::store
+    S1[("S3<br/>juan-s3/mlmodels/urlmodel")]:::store
     D5(["presigned download URL"]):::payload
     P4["Download CSV<br/>local copy on caller"]:::process
 
@@ -201,7 +201,7 @@ python -m unittest discover -s tests -p "test_*.py"
 ```bash
 python src/fetch_scan_results.py \
   --api-url "https://fi0d5laq4a.execute-api.eu-west-2.amazonaws.com/prod/scan" \
-  --model-version "20250301" \
+  --model-version "123456" \
   --data-source "VT" \
   --url-file "urltest.txt"
 ```
@@ -235,7 +235,7 @@ Or run the Teams delivery on its own from an existing summary and charts:
 python src/send_teams_report.py \
   --webhook-url "https://prod-XXX.logic.azure.com:443/workflows/.../invoke?..." \
   --summary-file "summary.txt" \
-  --bucket "lrs-jane-s3" \
+  --bucket "juan-s3" \
   --prefix "mlmodels/urlmodel/reports"
 ```
 
@@ -272,7 +272,7 @@ phishing keywords). Full analysis is in `docs/llm-comparison.md`.
 
 ```json
 {
-  "MODEL_VERSION": "20250301",
+  "MODEL_VERSION": "123456",
   "DATA_SOURCE": "VT",
   "URL_TXT": "https://example.com\nhttps://example.org"
 }
@@ -282,7 +282,7 @@ phishing keywords). Full analysis is in `docs/llm-comparison.md`.
 
 ```text
 Payload accepted.
-Model version: 20250301
+Model version: 123456
 Data source: VT
 URL count: 2
 ```

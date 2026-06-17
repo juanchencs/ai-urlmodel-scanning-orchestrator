@@ -33,13 +33,13 @@ flowchart TB
     end
 
     subgraph WORK["Scan worker (Account BB)"]
-        W1["EC2 worker (jane-ec2)"]:::worker
+        W1["EC2 worker (worker-ec2)"]:::worker
         W2["Docker container<br/>sai-url:model-version-NNN<br/>port 8700+"]:::worker
         W3["scan_urls.py<br/>scan_single_urls_list()"]:::worker
     end
 
     subgraph DATA["Storage & AI (Account BB)"]
-        S3["S3 bucket<br/>lrs-jane-s3/mlmodels/urlmodel"]:::storage
+        S3["S3 bucket<br/>example-bucket/mlmodels/urlmodel"]:::storage
         BR["Amazon Bedrock<br/>Nova / Claude (Converse)"]:::ai
     end
 

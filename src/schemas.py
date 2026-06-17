@@ -23,7 +23,7 @@ def parse_scan_request(payload: dict) -> ScanRequest:
     url_txt = str(payload.get("URL_TXT", "")).strip()
 
     if not MODEL_RE.match(model_version):
-        raise ValueError("MODEL_VERSION must be 6-12 digits, e.g. 20250301.")
+        raise ValueError("MODEL_VERSION must be 6-12 digits, e.g. 123456.")
     if not SOURCE_RE.match(data_source):
         raise ValueError("DATA_SOURCE must match ^[A-Za-z0-9_-]{1,40}$.")
     if not url_txt:

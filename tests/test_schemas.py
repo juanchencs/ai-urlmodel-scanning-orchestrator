@@ -8,12 +8,12 @@ from src.schemas import parse_scan_request
 class TestSchemas(unittest.TestCase):
     def test_valid_payload(self) -> None:
         payload = {
-            "MODEL_VERSION": "20250301",
+            "MODEL_VERSION": "123456",
             "DATA_SOURCE": "VT",
             "URL_TXT": "https://example.com",
         }
         req = parse_scan_request(payload)
-        self.assertEqual(req.model_version, "20250301")
+        self.assertEqual(req.model_version, "123456")
 
     def test_invalid_model(self) -> None:
         payload = {

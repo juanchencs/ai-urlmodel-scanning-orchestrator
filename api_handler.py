@@ -61,7 +61,7 @@ def _parse_request(event: dict[str, Any]) -> ScanRequest:
     url_txt = str(payload["URL_TXT"]).strip()
 
     if not MODEL_PATTERN.match(model_number):
-        raise ValueError("MODEL_NUMER must match ^\\d{6,12}$, for example 20250301.")
+        raise ValueError("MODEL_NUMER must match ^\\d{6,12}$, for example 123456.")
     if not DATASOURCE_PATTERN.match(data_source):
         raise ValueError("DATA_SOURCE must match ^[A-Za-z0-9_-]{1,40}$.")
 
@@ -191,7 +191,7 @@ if __name__ == "__main__":
     mock_event = {
         "body": json.dumps(
             {
-                "MODEL_NUMER": "20250301",
+                "MODEL_NUMER": "123456",
                 "DATA_SOURCE": "VT",
                 "URL_TXT": "https://example.com/urls.txt",
             }

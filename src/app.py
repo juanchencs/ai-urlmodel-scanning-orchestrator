@@ -7,7 +7,7 @@ from schemas import parse_scan_request
 
 def main() -> None:
     payload = {
-        "MODEL_VERSION": "20250301",
+        "MODEL_VERSION": "123456",
         "DATA_SOURCE": "VT",
         "URL_TXT": "https://example.com\nhttps://example.org",
     }

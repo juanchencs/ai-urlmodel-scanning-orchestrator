@@ -25,7 +25,7 @@ Primary components:
    - Handles retries and terminal failures
 
 3. **Scanner Worker**
-   - Runs model image `scr.sophos.com/spoke/sai-url:model-version-{MODEL_VERSION}`
+   - Runs model image `registry.example.com/spoke/sai-url:model-version-{MODEL_VERSION}`
    - Produces output CSV
 
 4. **Artifact & Reporting**

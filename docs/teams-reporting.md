@@ -38,7 +38,7 @@ First save the summary text to a file (for example `summary.txt`), then:
 python src/send_teams_report.py \
   --webhook-url "https://prod-XXX.logic.azure.com:443/workflows/.../invoke?..." \
   --summary-file "summary.txt" \
-  --bucket "lrs-jane-s3" \
+  --bucket "example-bucket" \
   --prefix "mlmodels/urlmodel/reports" \
   --chart-score "chart_score.png" \
   --chart-length "chart_length.png" \

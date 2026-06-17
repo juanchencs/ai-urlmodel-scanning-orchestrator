@@ -128,7 +128,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Send AI-supported URL scan report to Microsoft Teams.")
     parser.add_argument("--webhook-url", required=True, help="Microsoft Teams Incoming Webhook URL")
     parser.add_argument("--summary-file", required=True, help="Path to a text file with the Nova summary")
-    parser.add_argument("--bucket", default="lrs-jane-s3", help="S3 bucket for chart hosting")
+    parser.add_argument("--bucket", default="example-bucket", help="S3 bucket for chart hosting")
     parser.add_argument("--prefix", default="mlmodels/urlmodel/reports", help="S3 prefix for chart hosting")
     parser.add_argument("--chart-score", default="chart_score.png", help="Path to ML score chart")
     parser.add_argument("--chart-length", default="chart_length.png", help="Path to URL length chart")

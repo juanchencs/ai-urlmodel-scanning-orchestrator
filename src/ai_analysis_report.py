@@ -168,7 +168,7 @@ def run(
     model_id: str,
     output_dir: Path,
     teams_webhook: str | None = None,
-    teams_bucket: str = "lrs-jane-s3",
+    teams_bucket: str = "example-bucket",
     teams_prefix: str = "mlmodels/urlmodel/reports",
 ) -> None:
     apply_plot_style()
@@ -217,7 +217,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--nova-model-id", default="amazon.nova-lite-v1:0", help="Bedrock model ID")
     parser.add_argument("--output-dir", default=".", help="Directory to save chart images")
     parser.add_argument("--teams-webhook", default=None, help="Microsoft Teams Incoming Webhook URL (optional)")
-    parser.add_argument("--teams-bucket", default="lrs-jane-s3", help="S3 bucket for hosting chart images")
+    parser.add_argument("--teams-bucket", default="example-bucket", help="S3 bucket for hosting chart images")
     parser.add_argument(
         "--teams-prefix",
         default="mlmodels/urlmodel/reports",

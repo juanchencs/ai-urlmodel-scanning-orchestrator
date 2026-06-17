@@ -28,7 +28,7 @@ flowchart TB
     P3["Worker writes urltest.txt<br/>then runs model scan"]:::process
     D4(["scan output CSV<br/>url, sha256, scoreNNN"]):::data
 
-    S1[("S3<br/>lrs-jane-s3/mlmodels/urlmodel")]:::store
+    S1[("S3<br/>example-bucket/mlmodels/urlmodel")]:::store
     D5(["presigned download URL"]):::payload
     P4["Download CSV<br/>local copy on caller"]:::process
 

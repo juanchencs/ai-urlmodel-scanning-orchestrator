@@ -77,7 +77,7 @@ pick_name_port() {{
 }}
 
 read NAME PORT < <(pick_name_port)
-IMAGE="scr.sophos.com/spoke/sai-url:model-version-${{MODEL_VERSION}}"
+IMAGE="scr.aaaaa.com/spoke/sai-url:model-version-${{MODEL_VERSION}}"
 
 docker run -d --name "$NAME" -p 127.0.0.1:${{PORT}}:8080 -e WORKERS=1 -e THREADS=0 -e SYSTEM=internal "$IMAGE"
 

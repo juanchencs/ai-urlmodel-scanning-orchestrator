@@ -41,7 +41,7 @@ class ECSRunner:
 
     def _register_task_definition(self, model_version: str) -> str:
         family = f"urlmodel-scan-{model_version}"
-        model_image = f"scr.sophos.com/spoke/sai-url:model-version-{model_version}"
+        model_image = f"scr.aaaaa.com/spoke/sai-url:model-version-{model_version}"
 
         response = self.ecs.register_task_definition(
             family=family,

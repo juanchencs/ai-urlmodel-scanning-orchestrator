@@ -73,7 +73,7 @@ def run(
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Submit URL scan request and download output CSV.")
     parser.add_argument("--api-url", required=True, help="REST API endpoint, e.g. https://.../prod/scan")
-    parser.add_argument("--model-version", required=True, help="Model version, e.g. 20250301")
+    parser.add_argument("--model-version", required=True, help="Model version, e.g. 123456")
     parser.add_argument("--data-source", required=True, help="Data source label, e.g. VT")
     parser.add_argument("--url-file", default="urltest.txt", help="Path to text file containing URLs")
     return parser

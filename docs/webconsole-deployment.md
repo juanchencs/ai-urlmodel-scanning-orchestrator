@@ -67,8 +67,8 @@ Open the new role:
         "s3:ListBucket"
       ],
       "Resource": [
-        "arn:aws:s3:::lrs-jane-s3",
-        "arn:aws:s3:::lrs-jane-s3/*"
+        "arn:aws:s3:::example-bucket",
+        "arn:aws:s3:::example-bucket/*"
       ]
     },
     {
@@ -113,8 +113,8 @@ In Lambda function:
 
 1. Open **Configuration** -> **Environment variables**.
 2. Add:
-  - `WORKER_INSTANCE_ID` = `<jane-ec2-instance-id>`
-  - `BUCKET` = `lrs-jane-s3`
+  - `WORKER_INSTANCE_ID` = `<worker-ec2-instance-id>`
+  - `BUCKET` = `example-bucket`
   - `PREFIX` = `mlmodels/urlmodel`
   - `SCAN_SCRIPT_PATH` = `/home/ubuntu/efs/urlmodel/scan_urls.py`
 3. Save.
@@ -132,14 +132,14 @@ Do not add reserved key `AWS_REGION` as custom env var.
 
 ## 3) Ensure worker EC2 prerequisites
 
-On worker EC2 (`jane-ec2`), ensure:
+On worker EC2 (`worker-ec2`), ensure:
 
 - SSM Agent installed and online.
 - Instance profile allows SSM command execution.
 - Docker installed and usable.
 - `scan_urls.py` exists at `/home/ubuntu/efs/urlmodel/scan_urls.py`.
 - Instance can pull image:
-  - `scr.sophos.com/spoke/sai-url:model-version-{MODEL_VERSION}`
+  - `registry.example.com/spoke/sai-url:model-version-{MODEL_VERSION}`
 
 ## 4) Create REST API Gateway
 
@@ -185,7 +185,7 @@ For stronger security:
 
 ```json
 {
-  "MODEL_VERSION": "20250301",
+  "MODEL_VERSION": "123456",
   "DATA_SOURCE": "VT",
   "URL_TXT": "https://example.com\nhttps://example.org"
 }
