@@ -126,7 +126,7 @@ def handler(event, context):
 
         results_bucket = os.environ["RESULTS_BUCKET"]
         results_prefix = os.getenv("RESULTS_PREFIX", "url-model-results")
-        nova_model_id = os.getenv("NOVA_MODEL_ID", "amazon.nova-lite-v1:0")
+        nova_model_id = os.getenv("NOVA_MODEL_ID") or os.getenv("FOUNDATION_MODEL_ID", "<FOUNDATION_MODEL_ID>")
 
         ecs_runner = ECSRunner(
             cluster_arn=os.environ["ECS_CLUSTER_ARN"],

@@ -6,7 +6,7 @@ It provides a reference structure for:
 - receiving scan requests through API Gateway
 - orchestrating scanning with a trained machine-learning model on a worker (for example EC2 via SSM or ECS)
 - storing results in S3
-- analyzing results and generating summaries/charts with Bedrock-supported AI models (for example Nova or Claude)
+- analyzing results and generating summaries/charts with Bedrock-supported AI models (for example **Model A / Model B**)
 - preparing outputs for dashboard/reporting use
 - delivering the AI-supported report to a Microsoft Teams channel
 
@@ -55,8 +55,8 @@ flowchart TB
     end
 
     subgraph DATA["Storage & AI (Account BB)"]
-        S3["S3 bucket<br/>juan-s3/mlmodels/urlmodel"]:::storage
-        BR["Amazon Bedrock<br/>Nova / Claude (Converse)"]:::ai
+        S3["S3 bucket<br/>example-bucket/mlmodels/urlmodel"]:::storage
+        BR["Amazon Bedrock<br/>Model A / Model B (Converse)"]:::ai
     end
 
     TEAMS["Microsoft Teams channel<br/>Incoming Webhook (Adaptive Card)"]:::report
@@ -105,7 +105,7 @@ flowchart TB
     P3["Worker writes urltest.txt<br/>then runs model scan"]:::process
     D4(["scan output CSV<br/>url, sha256, scoreNNN"]):::data
 
-    S1[("S3<br/>juan-s3/mlmodels/urlmodel")]:::store
+    S1[("S3<br/>example-bucket/mlmodels/urlmodel")]:::store
     D5(["presigned download URL"]):::payload
     P4["Download CSV<br/>local copy on caller"]:::process
 
@@ -114,7 +114,7 @@ flowchart TB
     P6["Render charts (matplotlib)"]:::process
     D7(["chart_score.png<br/>chart_length.png<br/>chart_keywords.png"]):::data
 
-    P7["Bedrock Nova/Claude<br/>aggregate-metrics prompt"]:::ai
+    P7["Bedrock Model A/B<br/>aggregate-metrics prompt"]:::ai
     D8(["Summary bullets<br/>(<= 4)"]):::ai
 
     P8["Upload charts + build<br/>Adaptive Card"]:::process
@@ -212,7 +212,7 @@ python src/fetch_scan_results.py \
 python src/ai_analysis_report.py \
   --csv-file "VT_20250301_63.csv" \
   --region "eu-west-2" \
-  --nova-model-id "amazon.nova-lite-v1:0" \
+  --nova-model-id "<FOUNDATION_MODEL_ID>" \
   --output-dir "."
 ```
 
@@ -224,7 +224,7 @@ Deliver as part of the analysis step by adding `--teams-webhook`:
 python src/ai_analysis_report.py \
   --csv-file "VT_20250301_63.csv" \
   --region "eu-west-2" \
-  --nova-model-id "amazon.nova-lite-v1:0" \
+  --nova-model-id "<FOUNDATION_MODEL_ID>" \
   --output-dir "." \
   --teams-webhook "https://prod-XXX.logic.azure.com:443/workflows/.../invoke?..."
 ```
@@ -235,31 +235,31 @@ Or run the Teams delivery on its own from an existing summary and charts:
 python src/send_teams_report.py \
   --webhook-url "https://prod-XXX.logic.azure.com:443/workflows/.../invoke?..." \
   --summary-file "summary.txt" \
-  --bucket "juan-s3" \
+  --bucket "example-bucket" \
   --prefix "mlmodels/urlmodel/reports"
 ```
 
-## LLM Comparison (Nova Lite vs Claude Opus)
+## LLM Comparison (Model A vs Model B)
 
 The reporting step can use different Bedrock models. Below are two summaries
 generated from the **same input** (7 URLs, 3 flagged, mean score ~38.3, no
 phishing keywords). Full analysis is in `docs/llm-comparison.md`.
 
-**`amazon.nova-lite-v1:0`**
+**`FOUNDATION_MODEL_A`**
 
 - Total URLs Monitored: 7
 - Flagged URLs: 3 (42.86%)
 - Average Risk Score: 38.29
 - Keyword Frequency: No high-risk keywords detected (e.g., "login", "password", "payment")
 
-**`anthropic.claude-opus-4-6-v1`**
+**`FOUNDATION_MODEL_B`**
 
 - Flagged URL Rate: 3 of 7 monitored URLs (43%) were flagged as potentially suspicious, indicating a notable proportion warranting further review.
 - Average Risk Score: The mean risk score across all URLs is 38.3 out of 100, suggesting a moderate overall threat level in the current batch.
 - Keyword Indicators: No common phishing/social-engineering keywords (e.g., "login," "password," "payment," "bank") were detected, suggesting flagged URLs may rely on other deceptive techniques.
 - Recommendation: Investigate the 3 flagged URLs manually to determine root cause of elevated scores despite absence of typical phishing keywords; consider updating detection heuristics accordingly.
 
-| Dimension | Nova Lite | Claude Opus |
+| Dimension | Model A | Model B |
 |---|---|---|
 | Style | Concise, metric-first | Narrative, analytical |
 | Numeric fidelity | Exact (42.86%, 38.29) | Rounded (43%, 38.3) |
@@ -297,4 +297,4 @@ URL count: 2
 - Data workflow diagram (colored): `docs/data-workflow.md`
 - Web Console deployment (IAM role, Lambda, API Gateway, policies): `docs/webconsole-deployment.md`
 - Microsoft Teams reporting (final step): `docs/teams-reporting.md`
-- LLM comparison (Nova Lite vs Claude Opus): `docs/llm-comparison.md`
+- LLM comparison (Model A vs Model B): `docs/llm-comparison.md`

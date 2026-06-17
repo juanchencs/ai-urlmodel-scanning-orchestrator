@@ -211,10 +211,14 @@ def run(
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Generate charts and Nova summary from URL scan CSV.")
+    parser = argparse.ArgumentParser(description="Generate charts and an LLM summary from URL scan CSV.")
     parser.add_argument("--csv-file", required=True, help="Path to output CSV file")
     parser.add_argument("--region", default="eu-west-2", help="AWS region for Bedrock")
-    parser.add_argument("--nova-model-id", default="amazon.nova-lite-v1:0", help="Bedrock model ID")
+    parser.add_argument(
+        "--nova-model-id",
+        default=os.getenv("FOUNDATION_MODEL_ID", "<FOUNDATION_MODEL_ID>"),
+        help="Bedrock model ID (set FOUNDATION_MODEL_ID or pass explicitly)",
+    )
     parser.add_argument("--output-dir", default=".", help="Directory to save chart images")
     parser.add_argument("--teams-webhook", default=None, help="Microsoft Teams Incoming Webhook URL (optional)")
     parser.add_argument("--teams-bucket", default="example-bucket", help="S3 bucket for hosting chart images")

@@ -40,7 +40,7 @@ flowchart TB
 
     subgraph DATA["Storage & AI (Account BB)"]
         S3["S3 bucket<br/>example-bucket/mlmodels/urlmodel"]:::storage
-        BR["Amazon Bedrock<br/>Nova / Claude (Converse)"]:::ai
+        BR["Amazon Bedrock<br/>Model A / Model B (Converse)"]:::ai
     end
 
     TEAMS["Microsoft Teams channel<br/>Incoming Webhook (Adaptive Card)"]:::report
@@ -69,7 +69,7 @@ flowchart TB
 ## Legend
 
 - Blue: caller/client components
-- Indigo: AI components (Bedrock Nova/Claude + analysis)
+- Indigo: AI components (Bedrock model + analysis)
 - Yellow: API Gateway edge
 - Red: security controls (IAM auth, resource policy, VPC endpoint)
 - Green: orchestration (Lambda + SSM)

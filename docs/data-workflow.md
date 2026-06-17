@@ -37,7 +37,7 @@ flowchart TB
     P6["Render charts (matplotlib)"]:::process
     D7(["chart_score.png<br/>chart_length.png<br/>chart_keywords.png"]):::data
 
-    P7["Bedrock Nova/Claude<br/>aggregate-metrics prompt"]:::ai
+    P7["Bedrock Model A/B<br/>aggregate-metrics prompt"]:::ai
     D8(["Summary bullets<br/>(<= 4)"]):::ai
 
     P8["Upload charts + build<br/>Adaptive Card"]:::process
@@ -68,7 +68,7 @@ flowchart TB
 7. **Metrics**: totals, flagged count (`score >= 30`), mean score, and keyword
    frequencies are computed.
 8. **Charts**: three PNG charts are rendered.
-9. **AI summary**: Bedrock (Nova/Claude) produces up to 4 bullet points from the
+9. **AI summary**: Bedrock (Model A/B) produces up to 4 bullet points from the
    aggregate metrics only.
 10. **Report delivery**: charts are uploaded to S3, an Adaptive Card is built
     (summary + chart URLs), and posted to the Microsoft Teams channel.

@@ -1,4 +1,4 @@
-# LLM Comparison: Nova Lite vs Claude Opus
+# LLM Comparison: Model A vs Model B
 
 The reporting step uses a Bedrock-hosted LLM to turn aggregate scan metrics into a
 human-readable summary. Below is a side-by-side comparison of two models run on the
@@ -13,14 +13,14 @@ human-readable summary. Below is a side-by-side comparison of two models run on 
 | Average risk score | 38.3 / 100 |
 | Phishing keywords detected | None (e.g. login, password, payment, bank) |
 
-## Model Output: `amazon.nova-lite-v1:0`
+## Model Output: `FOUNDATION_MODEL_A`
 
 - **Total URLs Monitored:** 7
 - **Flagged URLs:** 3 (42.86%)
 - **Average Risk Score:** 38.29
 - **Keyword Frequency:** No high-risk keywords detected (e.g., "login", "password", "payment")
 
-## Model Output: `anthropic.claude-opus-4-6-v1`
+## Model Output: `FOUNDATION_MODEL_B`
 
 - **Flagged URL Rate:** 3 of 7 monitored URLs (43%) were flagged as potentially suspicious, indicating a notable proportion warranting further review.
 - **Average Risk Score:** The mean risk score across all URLs is 38.3 out of 100, suggesting a moderate overall threat level in the current batch.
@@ -29,7 +29,7 @@ human-readable summary. Below is a side-by-side comparison of two models run on 
 
 ## Side-by-Side Analysis
 
-| Dimension | Nova Lite (`nova-lite-v1:0`) | Claude Opus (`claude-opus-4-6-v1`) |
+| Dimension | Model A | Model B |
 |---|---|---|
 | Style | Concise, metric-first | Narrative, analytical |
 | Numeric fidelity | Exact (42.86%, 38.29) | Rounded for readability (43%, 38.3) |
@@ -41,11 +41,11 @@ human-readable summary. Below is a side-by-side comparison of two models run on 
 
 ## Takeaways
 
-- **Nova Lite** is faster and cheaper, and is ideal when the audience just needs the
+- **Model A** is faster/cheaper, and is ideal when the audience just needs the
   raw numbers in a compact card (e.g. an executive Teams dashboard).
-- **Claude Opus** produces richer, decision-oriented narrative — it interprets the
+- **Model B** produces richer, decision-oriented narrative — it interprets the
   numbers and recommends next actions, which is more useful for security analysts.
 - Both models agreed on the underlying facts; they differ mainly in **tone, depth,
   and actionability** rather than accuracy.
-- A practical pattern: use **Nova Lite** for routine/high-volume runs and switch to
-  **Claude Opus** when a flagged batch needs deeper human-facing analysis.
+- A practical pattern: use **Model A** for routine/high-volume runs and switch to
+  **Model B** when a flagged batch needs deeper human-facing analysis.

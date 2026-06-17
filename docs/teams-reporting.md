@@ -5,7 +5,7 @@ Microsoft Teams channel using an Incoming Webhook and an Adaptive Card.
 
 ## What Gets Sent
 
-- The Nova-generated summary (rendered as bullet points)
+- The LLM-generated summary (rendered as bullet points)
 - Three chart images:
   - ML Score Distribution
   - URL Length Distribution
@@ -55,7 +55,7 @@ charts and summary, by passing `--teams-webhook`:
 python src/ai_analysis_report.py \
   --csv-file "VT_20250301_63.csv" \
   --region "eu-west-2" \
-  --nova-model-id "amazon.nova-lite-v1:0" \
+  --nova-model-id "<FOUNDATION_MODEL_ID>" \
   --output-dir "." \
   --teams-webhook "https://prod-XXX.logic.azure.com:443/workflows/.../invoke?..."
 ```
